@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="flex flex-col   min-h-screen  bg-green-100">
+    {% include "component/nav.html" %}
+    
+    <div class="flex flex-col flex-grow">
+        <div class="flex justify-center">
+            <div class="flex w-4/6 dark:text-black">
+                <div class="flex w-full py-2 justify-between bg-green-200 rounded-md p-2 ">
+                    <span class="font-semibold">Project storage system วิศวะกรรมคอมพิวเตอร์</span>
+                    <!-- <input type="search" name="search" placeholder="Search..."
+                        class="w-48 h-7 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"> -->
+                </div>
+            </div>
+        </div>
+        <div class="container w-4/6 self-center mt-2 relative">
+            <div role="alert" class="alert alert-info absolute  ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>New update available.</span>
+              </div>
+
+            <div role="alert" class="alert alert-error absolute  ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span>Error! Task failed successfully.</span>
+            </div>
+
+            <div class="flex flex-col self-center w-full bg-slate-400  h-full p-2 ">
+                <div class="flex w-full  ">
+                    <div class="bg-black  w-36 h-36">
+                        <img src="{{ user_record.img.url }}" alt="" class="w-36 h-36 p-3" />
+                    </div>
+                    
+                    <div class="flex bg-black ml-2 w-full h-auto">
+                        {% if role == 't' %}
+                        <div class="flex flex-col justify-between m-2 text-white w-full ">
+                            <span class="text-xl font-semibold">ประวัติ</span>
+                            <div class="flex items-center m-2">
+                                <span>ชื่อ-นามสกุล : </span>
+                                <input type="text" placeholder="Type here" id="fullname"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.fullname}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>รหัส : </span>
+                                <input type="text" placeholder="Type here" id="id_teacher"
+                                    class="input input-bordered w-full max-w-xs ml-3"
+                                    value={{user_record.id_teacher}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>คณะ : </span>
+                                <input type="text" placeholder="Type here" id="branch"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.faculty}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>สาขาวิชา : </span>
+                                <input type="text" placeholder="Type here" id="branch"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.branch}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>E-mail : </span>
+                                <input type="text" placeholder="Type here" id="email"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.email}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>เบอร์โทรศัพท์ : </span>
+                                <input type="text" placeholder="Type here" id="phone"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.phone}} />
+                            </div>
+                            <div class="flex bg-black items-end justify-end">
+                                <button class="btn btn-info mr-2" id="save_profile" onclick="save_profile()">บันทึกข้อมูล</button>
+                                <button class="btn btn-warning" onclick="edit_profile()">แก้ไขข้อมูล</button>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if role == 's' %}
+                        <div class="flex flex-col justify-between m-2 text-white w-full ">
+                            <span class="text-xl font-semibold">ประวัติ</span>
+                            <div class="flex items-center m-2">
+                                <span>ชื่อ-นามสกุล : </span>
+                                <input type="text" placeholder="Type here" id="fullname"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.fullname}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>รหัสนักศึกษา : </span>
+                                <input type="text" placeholder="Type here" id="id_student"
+                                    class="input input-bordered w-full max-w-xs ml-3"
+                                    value={{user_record.id_student}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>คณะ : </span>
+                                <input type="text" placeholder="Type here" id="faculty"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.faculty}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>สาขาวิชา : </span>
+                                <input type="text" placeholder="Type here" id="branch"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.branch}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>ปีการศึกษา : </span>
+                                <input type="text" placeholder="Type here" id="year"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.year}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>E-mail : </span>
+                                <input type="text" placeholder="Type here" id="email"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.email}} />
+                            </div>
+                            <div class="flex items-center m-2">
+                                <span>เบอร์โทรศัพท์ : </span>
+                                <input type="text" placeholder="Type here" id="phone"
+                                    class="input input-bordered w-full max-w-xs ml-3" value={{user_record.phone}} />
+                            </div>
+                            <div class="flex bg-black items-end justify-end">
+                                <button class="btn btn-info mr-2" id="save_profile" onclick="save_profile()">บันทึกข้อมูล</button>
+                                <button class="btn btn-error mr-2" id="cancel_profile" onclick="cancel_profile()">ยกเลิกการแก้ไข</button>
+                                <button class="btn btn-warning" onclick="edit_profile()">แก้ไขข้อมูล</button>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>  
+                </div>
+                {% if role == 's' %}
+                <div class="flex m-2 bg-black p-2">
+                    <div  class=" flex items-center mr-2 bg-blue-500 text-black font-semibold p-2">{{project}}</div>
+                    <a href="/newproject" class="btn btn-success mr-2" >เพิ่มโปรเจ็ค</a>
+                    <a href="/editproject" class="btn btn-error mr-2">แก้โปรเจ็ค</a>
+                </div>
+                {% endif %}
+                {% if role == 't' %}
+                <div class="flex m-2 bg-black p-2">
+                    <div  class=" flex items-center mr-2 bg-blue-500 text-black font-semibold p-2">{{project}}</div>
+                    <button class="btn btn-success mr-2" id="add_project" onclick="view_project()">รายการโครงการที่ปรึกษา</button>
+                    <button class="btn btn-error mr-2" id="edit_project" onclick="view_std()">รายชื่อนักศึกษาที่สังกัต</button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="flex">
+        {% include "component/footer.html" %}
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('.alert-info').hide()
+        $('.alert-error').hide()
+        $('#cancel_profile').hide()
+        $('#save_profile').hide()
+        $('input').each(function(i,e){
+            console.log(i)
+           $(e).prop( "disabled", true );
+        })
+    });
+    function edit_profile(){
+        console.log('click')
+        $('input').each(function(){
+            $(this).prop( "disabled", false );
+        });
+        $('#save_profile').show()
+        $('#cancel_profile').show()
+        }
+    function cancel_profile(){
+        window.location.reload();
+    }
+    function save_profile(){
+        var csrftoken = getCookie('csrftoken');
+        var dataset =  {}
+        $('input').each(function(){
+            var data = $(this).val();
+            var id = $(this).attr('id')
+            dataset[id] = data;
+            console.log(dataset);
+        });
+
+        $.ajax({
+            url: 'save_profile',  
+            type: 'POST',              
+            dataType: 'json',       
+            data: dataset,
+            headers: {
+            'X-CSRFToken': csrftoken
+             },
+            success: function(response) {
+                if(response.status == 'success'){
+                    $('.alert-info').show(); // Show the alert
+                    setTimeout(function() {
+                    $('.alert-info').hide(); 
+                    window.location.reload();
+                }, 2000);
+                }else{
+                    $('.alert-error').show(); // Show the alert
+                    setTimeout(function() {
+                    $('.alert-error').hide(); 
+                }, 2000);
+                }
+              
+            },
+    
+        });
+     }
+
+     function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock %}

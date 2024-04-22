@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+ Project Year
+{% endblock  %}
+{% block content %}
+
+<div class="flex flex-col   min-h-screen  bg-green-100">
+    {% include "component/nav.html" %}
+    <div class="flex flex-col flex-grow">
+        <div class="flex justify-center">
+            <div class="flex w-4/6 dark:text-black">
+                <div class="flex w-full py-2 justify-between bg-green-200 rounded-md p-2">
+                    <span class="font-semibold">Project storage system วิศวะกรรมคอมพิวเตอร์  </span>
+                    <input type="search" name="search" placeholder="Search..."
+                        class="w-48 h-7 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+            </div>
+        </div>
+        <div class="container w-4/6 self-center">
+        <div class="flex flex-col justify-center p-2">
+        {% for year, projects in context.items %}
+            <div class="collapse collapse-plus bg-gray-400">
+                <input type="radio" name="my-accordion-3" checked="checked" /> 
+                <div class="collapse-title text-xl font-medium text-black">
+                    {{ year }}
+                </div>
+                <div class="collapse-content text-black"> 
+                {% for project in projects %}
+                <div class="hover:bg-slate-300">
+                    <a href="/viewproject?id={{ project.id }}" ><p>{{ project.name }}</p></a>
+                </div>
+                 
+                  {% endfor %}
+                </div>
+               
+              </div>
+              {% endfor %}      
+        </div>
+    </div>
+    </div>
+    <div class="flex">
+        {% include "component/footer.html" %}
+    </div>
+</div>
+
+{% endblock %}

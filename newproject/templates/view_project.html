@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+    TTTTTTT
+{% endblock  %}
+{% block content %}
+
+<div class="flex flex-col   min-h-screen  bg-green-100">
+    {% include "component/nav.html" %}
+    <div class="flex flex-col flex-grow">
+        <div class="flex justify-center">
+            <div class="flex w-4/6 dark:text-black">
+                <div class="flex w-full py-2 justify-between bg-green-200 rounded-md p-2">
+                    <span class="font-semibold">Project storage system วิศวะกรรมคอมพิวเตอร์</span>
+                    <input type="search" name="search" placeholder="Search..."
+                        class="w-48 h-7 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+            </div>
+        </div>
+        
+        <div class="container w-4/6 self-center">
+        <div class="card card-side bg-base-100 shadow-xl m-3">
+            <figure><img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie"/></figure>
+            <div class="card-body">
+              <h2 class="card-title">{{projects.name}}</h2>
+              <p> {{projects.year}}</p>
+              <div class="card-actions justify-end">
+                <p>{{projects.type}}</p>
+                <p>{{projects.id_teacher}}</p>
+                <p>{{projects.id_student}}</p>
+                <p>{{projects.tag}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex">
+            {% include "component/footer.html" %}
+        </div>
+    </div>
+    {% endblock %}

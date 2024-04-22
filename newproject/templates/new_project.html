@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+    New
+{% endblock  %}
+{% block content %}
+
+<div class="flex flex-col   min-h-screen  bg-green-100">
+    {% include "component/nav.html" %}
+    <div class="flex flex-col flex-grow">
+        <div class="flex justify-center">
+            <div class="flex w-4/6 dark:text-black">
+                <div class="flex w-full py-2 justify-between bg-green-200 rounded-md p-2">
+                    <span class="font-semibold">Project storage system วิศวะกรรมคอมพิวเตอร์</span>
+                    <input type="search" name="search" placeholder="Search..."
+                        class="w-48 h-7 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+            </div>
+        </div>
+        <div class="container w-4/6 self-center mt-2 relative">
+        <div class="flex flex-col self-center w-full bg-slate-400  h-full p-2 ">
+            <div class="flex flex-col w-full">
+                <div class="flex text-black items-center">
+                    <span class="mr-2 font-semibold">Project Name :</span>
+                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"/>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="flex">
+            {% include "component/footer.html" %}
+        </div>
+    </div>
+    {% endblock %}

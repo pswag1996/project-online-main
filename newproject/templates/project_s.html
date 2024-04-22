@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="flex flex-col   min-h-screen  bg-green-100">
+    {% include "component/nav.html" %}
+    <div class="flex flex-col flex-grow">
+        <div class="flex justify-center">
+            <div class="flex w-4/6 dark:text-black">
+                <div class="flex w-full py-2 justify-between bg-green-200 rounded-md p-2">
+                    <span class="font-semibold">Project storage system วิศวะกรรมคอมพิวเตอร์</span>
+                    <input type="search" name="search" placeholder="Search..."
+                        class="w-48 h-7 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+            </div>
+        </div>
+ 
+
+<div class="container w-4/6 self-center">
+    <div class="grid grid-cols-4 m-3">
+        {% for x in data  %}
+        <div class="card w-56 bg-base-100 shadow-xl  m-3 h-72">
+            <figure><img src="https://cdn-icons-png.flaticon.com/512/5063/5063917.png" class="w-48 h-48 p-3" /></figure>
+            <div class="card-body p-3">
+              <h2 class="card-title">{{x.name}}</h2>
+              <p></p>
+              <div class="card-actions justify-end">
+                <div class="badge badge-outline">{{x.tag}}</div> 
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+<div class="flex">
+    {% include "component/footer.html" %}
+</div>
+</div>
+
+{% endblock %}
